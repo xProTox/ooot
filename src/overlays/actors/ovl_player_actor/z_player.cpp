@@ -8491,7 +8491,7 @@ s32 func_80845964(GlobalContext* globalCtx, Player* pthis, CsCmdActorAction* arg
         f32 selfDistX = arg2->endPos.x - pthis->actor.world.pos.x;
         f32 selfDistZ = arg2->endPos.z - pthis->actor.world.pos.z;
         f32 sp28 = sqrtf(SQ(selfDistX) + SQ(selfDistZ)) / sp34;
-        s32 sp24 = (arg2->endFrame - globalCtx->csCtx.frames) + 1;
+        s32 framesRemaining = (arg2->endFrame - globalCtx->csCtx.frames) + 1;
 
         arg4 = Math_Atan2S(selfDistZ, selfDistX);
 
@@ -8500,14 +8500,14 @@ s32 func_80845964(GlobalContext* globalCtx, Player* pthis, CsCmdActorAction* arg
             f32 distZ = arg2->endPos.z - arg2->startPos.z;
             s32 temp = (((sqrtf(SQ(distX) + SQ(distZ)) / sp34) / (arg2->endFrame - arg2->startFrame)) / 1.5f) * 4.0f;
 
-            if (temp >= sp24) {
+            if (temp >= framesRemaining) {
                 arg4 = pthis->actor.shape.rot.y;
                 arg3 = 0.0f;
             } else {
-                arg3 = sp28 / ((sp24 - temp) + 1);
+                arg3 = sp28 / ((framesRemaining - temp) + 1);
             }
         } else {
-            arg3 = sp28 / sp24;
+            arg3 = sp28 / framesRemaining;
         }
     }
 

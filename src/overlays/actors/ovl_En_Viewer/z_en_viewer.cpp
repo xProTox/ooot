@@ -239,22 +239,25 @@ void EnViewer_UpdateImpl(EnViewer* pthis, GlobalContext* globalCtx) {
     } else if (type == ENVIEWER_TYPE_3_GANONDORF) {
         if (gSaveContext.sceneSetupIndex == 4) {
 
-            switch(globalCtx->csCtx.frames)
-            {
-                case 20:
-                case 59:
-                case 71:
-                case 129:
-                case 140:
-                case 219:
-                case 280:
-                case 320:
-                case 380:
-                case 409:
-                case 438:
-                    Audio_PlaySoundGeneral(NA_SE_SY_DEMO_CUT, &gAudioDefaultPos, 4, &D_801333E0, &D_801333E0, &gReverbAdd2);
-                    break;
-            }
+            if(globalCtx->csCtx.frames.isWhole())
+		    {
+			    switch(globalCtx->csCtx.frames.whole())
+			    {
+				    case 20:
+				    case 59:
+				    case 71:
+				    case 129:
+				    case 140:
+				    case 219:
+				    case 280:
+				    case 320:
+				    case 380:
+				    case 409:
+				    case 438:
+					    Audio_PlaySoundGeneral(NA_SE_SY_DEMO_CUT, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
+					    break;
+			    }
+		    }
         }
         if (gSaveContext.sceneSetupIndex == 5) {
             if (globalCtx->csCtx.frames == 1508) {

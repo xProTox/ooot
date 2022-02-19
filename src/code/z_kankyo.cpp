@@ -529,7 +529,7 @@ u8 Environment_SmoothStepToS8(s8* pvalue, s8 target, u8 scale, u8 step, u8 minSt
     return diff;
 }
 
-f32 Environment_LerpWeight(u16 max, u16 min, u16 val) {
+f32 Environment_LerpWeight(float max, float min, float val) {
     f32 diff = max - min;
     f32 ret;
 
@@ -544,17 +544,7 @@ f32 Environment_LerpWeight(u16 max, u16 min, u16 val) {
     return 1.0f;
 }
 
-f32 Environment_LerpWeight(const Counter max, const Counter min, const Counter val)
-{
-	return Environment_LerpWeight(max, min, val);
-}
-
-f32 Environment_LerpWeight(u16 max, u16 min, const Counter val)
-{
-    return Environment_LerpWeight(max, min, val);
-}
-
-f32 Environment_LerpWeightAccelDecel(u16 endFrame, u16 startFrame, u16 curFrame, u16 accelDuration, u16 decelDuration) {
+f32 Environment_LerpWeightAccelDecel(float endFrame, float startFrame, float curFrame, float accelDuration, float decelDuration) {
     f32 endFrameF;
     f32 startFrameF;
     f32 curFrameF;

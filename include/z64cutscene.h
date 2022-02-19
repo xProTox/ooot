@@ -289,7 +289,7 @@ struct CutsceneContext {
     /* 0x04 */ void* segment;
     /* 0x08 */ u8 state;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ u16 frames;
+    /* 0x10 */ Counter frames;
     /* 0x12 */ u16 unk_12;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ u16 unk_18;

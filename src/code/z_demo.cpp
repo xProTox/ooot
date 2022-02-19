@@ -129,7 +129,7 @@ void* D_8011E304[] = {
     gDekuTreeIntroCs, gJabuJabuIntroCs, gDcOpeningCs, gMinuetCs, gIceCavernSerenadeCs, gTowerBarrierCs,
 };
 
-u16 D_8015FCC0;
+Counter D_8015FCC0;
 u16 D_8015FCC2;
 u16 D_8015FCC4;
 s16 D_8015FCC6;
@@ -457,7 +457,8 @@ void func_80064824(GlobalContext* globalCtx, CutsceneContext* csCtx, CsCmdBase* 
             break;
         case 35:
             func_800EE824();
-            csCtx->frames = cmd->startFrame - 1;
+		    csCtx->frames = cmd->startFrame; // TODO CHECK csCtx->frames = cmd->startFrame - 1;
+	        csCtx->frames--; // TODO CHECK
             break;
     }
 }
@@ -2031,7 +2032,7 @@ void func_80068ECC(GlobalContext* globalCtx, CutsceneContext* csCtx) {
         if (csCtx->state == CS_STATE_SKIPPABLE_INIT) {
             Audio_SetCutsceneFlag(1);
 
-            csCtx->frames = 0xFFFF;
+            csCtx->frames = Counter::INVALID;
             csCtx->unk_18 = 0xFFFF;
             D_8015FCC0 = 0xFFFF;
             D_8015FCC2 = 0xFFFF;

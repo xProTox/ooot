@@ -509,6 +509,11 @@ class Timer
 		return *this;
 	}
 
+	bool isWhole() const
+	{
+		return floorf(m_counter) == m_counter;
+	}
+
 	s32 whole() const
 	{
 		return (s32)m_counter;
@@ -655,6 +660,8 @@ class Timer
 	{
 		return whole() >> n;
 	}
+
+	constexpr static float INVALID = -FRAMERATE_MAX / 20.0f;
 
 	protected:
 	float m_counter;

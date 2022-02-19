@@ -233,24 +233,27 @@ void ObjectKankyo_Fairies(ObjectKankyo* pthis, GlobalContext* globalCtx) {
 
         func_800F436C(&sSoundPos_53, NA_SE_EV_NAVY_FLY - SFX_FLAG, (0.4f * dist) + 0.6f);
 
-        switch(globalCtx->csCtx.frames)
-        {
-            case 473:
-                Common_PlaySfx2(NA_SE_VO_NA_HELLO_3);
-                break;
+        if(globalCtx->csCtx.frames.isWhole())
+	    {
+		    switch(globalCtx->csCtx.frames.whole())
+		    {
+			    case 473:
+				    func_800788CC(NA_SE_VO_NA_HELLO_3);
+				    break;
 
-            case 583:
-                func_800F4524(&gAudioDefaultPos, NA_SE_VO_NA_HELLO_2, 32);
-                break;
+			    case 583:
+				    func_800F4524(&D_801333D4, NA_SE_VO_NA_HELLO_2, 32);
+				    break;
 
-            case 763:
-                Common_PlaySfx(NA_SE_EV_NAVY_CRASH - SFX_FLAG);
-                break;
+			    case 763:
+				    func_80078884(NA_SE_EV_NAVY_CRASH - SFX_FLAG);
+				    break;
 
-            case 771:
-                Common_PlaySfx(NA_SE_VO_RT_THROW);
-                break;
-        }
+			    case 771:
+				    func_80078884(NA_SE_VO_RT_THROW);
+				    break;
+		    }
+	    }
     }
 
     if (globalCtx->envCtx.unk_EE[3] < 64 &&
