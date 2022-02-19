@@ -11,7 +11,7 @@ struct CutsceneCameraPoint;
 
 s32 Camera_AddQuake(Camera* camera, s32 arg1, s16 y, s32 countdown);
 s32 Camera_ChangeDataIdx(Camera* camera, s32 camDataIdx);
-s32 Camera_ChangeDoorCam(Camera* camera, Actor* doorActor, s16 camDataIdx, f32 arg3, s16 timer1, s16 timer2, s16 timer3);
+s32 Camera_ChangeDoorCam(Camera* camera, Actor* doorActor, s16 camDataIdx, f32 arg3, Timer timer1, Timer timer2, Timer timer3);
 s32 Camera_ChangeMode(Camera* camera, s16 mode);
 s32 Camera_ChangeSetting(Camera* camera, s16 setting);
 s16 Camera_ChangeStatus(Camera* camera, s16 status);

@@ -1268,7 +1268,7 @@ f32 Camera_LERPClampDist(Camera* camera, f32 dist, f32 min, f32 max) {
     return Camera_LERPCeilF(distTarget, camera->dist, 1.0f / camera->rUpdateRateInv, 0.2f);
 }
 
-f32 Camera_ClampDist(Camera* camera, f32 dist, f32 minDist, f32 maxDist, s16 timer) {
+static f32 Camera_ClampDist(Camera* camera, f32 dist, f32 minDist, f32 maxDist, Timer timer) {
     f32 distTarget;
     f32 rUpdateRateInvTarget;
 
@@ -2889,7 +2889,7 @@ s32 Camera_Battle1(Camera* camera) {
     s16 tmpAng1;
     s16 tmpAng2;
     Player* player;
-    s16 sp86;
+    Timer sp86;
     s16 isOffGround;
     f32 distance;
     f32 sp7C;
@@ -3041,7 +3041,7 @@ s32 Camera_Battle1(Camera* camera) {
     tmpAng1 = BINANG_SUB(atToTargetDir.yaw, BINANG_ROT180(atToEyeNextDir.yaw));
     if (anim->animTimer != 0) {
         if (anim->animTimer >= OREG(24)) {
-            sp86 = anim->animTimer - OREG(24);
+            sp86 = anim->animTimer - float(OREG(24));
             OLib_Vec3fDiffToVecSphGeo(&playerToTargetDir, at, eye);
             playerToTargetDir.yaw = BINANG_ROT180(tmpAng2);
 
@@ -6233,7 +6233,7 @@ s32 Camera_Demo6(Camera* camera) {
     VecSph eyeOffset;
     Actor* camFocus;
     PosRot focusPosRot;
-    TimerS16 stateTimers[4];
+    Timer stateTimers[4];
     Vec3f* at = &camera->at;
 
     mainCam = Gameplay_GetCamera(camera->globalCtx, MAIN_CAM);
@@ -6324,7 +6324,7 @@ s32 Camera_Demo8(Camera* camera) {
 s32 Camera_Demo9(Camera* camera) {
     s32 pad;
     s32 finishAction;
-    s16 onePointTimer;
+    Timer onePointTimer;
     Demo9OnePointCs* demo9OnePoint = (Demo9OnePointCs*)camera->paramData;
     Vec3f csEyeUpdate;
     Vec3f csAtUpdate;
@@ -6433,7 +6433,7 @@ s32 Camera_Demo9(Camera* camera) {
                     if (anim->finishAction == 0x2000) {
                         // finish action = 0x2000, run OnePointCs 0x3FC (Dramatic Return to Link)
                         onePointTimer =
-                            demo9OnePoint->onePointCs.initTimer < 50 ? 5 : demo9OnePoint->onePointCs.initTimer / 5;
+                            demo9OnePoint->onePointCs.initTimer < 50 ? Timer(5) : demo9OnePoint->onePointCs.initTimer / 5;
                         OnePointCutscene_Init(camera->globalCtx, 1020, onePointTimer, NULL, camera->parentCamIdx);
                     }
                 } else {
@@ -8169,8 +8169,8 @@ s16 func_8005AD1C(Camera* camera, s16 arg1) {
     return camera->unk_14C;
 }
 
-s32 Camera_ChangeDoorCam(Camera* camera, Actor* doorActor, s16 camDataIdx, f32 arg3, s16 timer1, s16 timer2,
-                         s16 timer3) {
+s32 Camera_ChangeDoorCam(Camera* camera, Actor* doorActor, s16 camDataIdx, f32 arg3, Timer timer1, Timer timer2, Timer timer3)
+{
     DoorParams* doorParams = (DoorParams*)camera->paramData;
 
     if ((camera->setting == CAM_SET_CS_ATTENTION) || (camera->setting == CAM_SET_DOORC)) {
