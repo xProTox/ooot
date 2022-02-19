@@ -589,7 +589,7 @@ void ObjectKankyo_DrawFairies(ObjectKankyo* pthis2, GlobalContext* globalCtx2) {
             }
 
             Matrix_Mult(&globalCtx->billboardMtxF, MTXMODE_APPLY);
-            Matrix_RotateZ(DEG_TO_RAD((globalCtx->state.frames * 20.0f).toFloat()), MTXMODE_APPLY);
+            Matrix_RotateZ(DEG_TO_RAD((globalCtx->state.frames * 20.0f)), MTXMODE_APPLY);
             gSPMatrix(POLY_XLU_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_object_kankyo.c", 913), G_MTX_LOAD);
             gSPDisplayList(POLY_XLU_DISP++, gKokiriDustMoteDL);
         }

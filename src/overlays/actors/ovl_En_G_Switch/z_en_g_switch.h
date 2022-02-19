@@ -27,7 +27,7 @@ enum EnGSwitchType {
 struct EnGSwitchEffect {
     /* 0x00 */ Vec3f pos;
     /* 0x0C */ s16 scale;
-    /* 0x0E */ s16 timer;
+    /* 0x0E */ Timer timer;
     /* 0x10 */ s16 colorIdx;
     /* 0x12 */ u8 flag;
     /* 0x14 */ Vec3f velocity;

@@ -39,7 +39,7 @@ struct EnSyatekiMan {
     /* 0x0210 */ s16 textIdx;
     /* 0x0212 */ s16 numTextBox;
     /* 0x0214 */ s16 gameResult;
-    /* 0x0216 */ s16 timer;
+    /* 0x0216 */ Timer timer;
     /* 0x0218 */ s32 getItemId;
     /* 0x021C */ u8 cameraHold;
     /* 0x0220 */ Actor* tempGallery;

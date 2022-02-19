@@ -18,7 +18,7 @@ struct EnDha {
     /* 0x01C0 */ u8 unk_1C0;
     /* 0x01C4 */ EnDhaActionFunc actionFunc;
     /* 0x01C8 */ s16 actionTimer;
-    /* 0x01CA */ s16 timer;
+    /* 0x01CA */ Timer timer;
     /* 0x01CC */ u8 unk_1CC;
     /* 0x01CE */ s16 limbAngleX[2];
     /* 0x01D2 */ s16 limbAngleY;

@@ -18,7 +18,7 @@ struct EnFish {
     /* 0x01F0 */ Vec3s jointTable[7];
     /* 0x021A */ Vec3s morphTable[7];
     /* 0x0244 */ EnFishActionFunc actionFunc;
-    /* 0x0248 */ s16 timer;
+    /* 0x0248 */ Timer timer;
     /* 0x024A */ s16 respawnTimer;
     /* 0x024C */ s16 slowPhase;
     /* 0x024E */ s16 fastPhase;

@@ -141,7 +141,7 @@ struct BossGoma {
     /* 0x01C8 */ char unk_1C8[0x8];
     /* 0x01D0 */ s16 actionState;
     /* 0x01D2 */ s16 framesUntilNextAction; // not always used as named
-    /* 0x01D4 */ s16 timer;
+    /* 0x01D4 */ Timer timer;
     /* 0x01D6 */ s16 sfxFaintTimer;
     /* 0x01D8 */ char unk_1D8[0x10];
     /* 0x01E8 */ f32 tailLimbsScale[4];

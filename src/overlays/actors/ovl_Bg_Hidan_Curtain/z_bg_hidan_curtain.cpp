@@ -194,7 +194,7 @@ void BgHidanCurtain_TurnOff(BgHidanCurtain* pthis, GlobalContext* globalCtx) {
 }
 
 void BgHidanCurtain_WaitForTimer(BgHidanCurtain* pthis, GlobalContext* globalCtx) {
-    DECR(pthis->timer);
+    DECRT(pthis->timer);
     if (pthis->timer == 0) {
         pthis->actionFunc = BgHidanCurtain_TurnOn;
     }

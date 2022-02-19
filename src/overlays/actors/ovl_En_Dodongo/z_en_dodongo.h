@@ -28,7 +28,7 @@ struct EnDodongo {
     /* 0x024A */ Vec3s morphTable[31];
     /* 0x0304 */ s32 actionState;
     /* 0x0308 */ EnDodongoActionFunc actionFunc;
-    /* 0x030C */ s16 timer;
+    /* 0x030C */ Timer timer;
     /* 0x030E */ s16 retreatTimer;
     /* 0x0310 */ s16 tailSwipeSpeed;
     /* 0x0312 */ s16 iceTimer;

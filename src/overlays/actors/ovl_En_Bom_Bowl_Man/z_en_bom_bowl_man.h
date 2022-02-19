@@ -30,7 +30,7 @@ struct EnBomBowlMan {
     /* 0x021E */ char unk_21E[0x6];
     /* 0x0224 */ Vec3s unk_224;
     /* 0x022A */ s16 prizeRevealTimer;
-    /* 0x022C */ s16 timer;
+    /* 0x022C */ Timer timer;
     /* 0x022E */ s16 dialogState;
     /* 0x0230 */ s16 prizeIndex;
     /* 0x0232 */ s16 startedPlaying; // set to true after starting the first round

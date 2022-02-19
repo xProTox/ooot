@@ -18,7 +18,7 @@ struct EnWonderItem {
     /* 0x0156 */ s16 itemDrop;
     /* 0x0158 */ s16 numTagPoints;
     /* 0x015A */ s16 dropCount;
-    /* 0x015C */ s16 timer;
+    /* 0x015C */ Timer timer;
     /* 0x015E */ s16 tagFlags;
     /* 0x015A */ s16 tagCount;
     /* 0x0162 */ s16 switchFlag;

@@ -49,10 +49,10 @@ void EnRl_Destroy(Actor* thisx, GlobalContext* globalCtx) {
 
 void func_80AE72D0(EnRl* pthis) {
     s32 pad[3];
-    s16* timer = &pthis->timer;
+    Timer* timer = &pthis->timer;
     s16* eyeTextureIndex = &pthis->eyeTextureIndex;
 
-    if (DECR(*timer) == 0) {
+    if (DECRT((*timer)) == 0) {
         *timer = Rand_S16Offset(60, 60);
     }
 

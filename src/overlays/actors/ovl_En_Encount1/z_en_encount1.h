@@ -26,7 +26,7 @@ struct EnEncount1 {
     /* 0x015E */ s16 killCount;
     /* 0x0160 */ s16 numLeeverSpawns;
     /* 0x0162 */ s16 leeverIndex;
-    /* 0x0164 */ s16 timer;
+    /* 0x0164 */ Timer timer;
     /* 0x0166 */ u8 reduceLeevers;
     /* 0x0168 */ f32 spawnRange;
     /* 0x016C */ EnReeba* bigLeever;

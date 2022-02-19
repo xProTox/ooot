@@ -324,7 +324,7 @@ void EnSsh_Turn(EnSsh* pthis, GlobalContext* globalCtx) {
         pthis->hitTimer--;
     }
     if (DECRT(pthis->spinTimer) != 0) {
-	    pthis->actor.world.rot.y += 10000.0f * FRAMERATE_SCALER * (pthis->spinTimer.toFloat() / 30.0f);
+	    pthis->actor.world.rot.y += 10000.0f * FRAMERATE_SCALER * (pthis->spinTimer / 30.0f);
     } else if ((pthis->swayTimer == 0) && (pthis->stunTimer == 0)) {
         Math_SmoothStepToS(&pthis->actor.world.rot.y, pthis->actor.yawTowardsPlayer, 4, 0x2710, 1);
     }
@@ -426,7 +426,7 @@ void EnSsh_Sway(EnSsh* pthis) {
         if (pthis->swayTimer == 0) {
             pthis->swayAngle = 0;
         }
-        temp = pthis->swayTimer.toFloat() * (1.0f / 6.0f);
+        temp = pthis->swayTimer * (1.0f / 6.0f);
         swayAngle = temp * (0x10000 / 360.0f) * Math_SinS(pthis->swayAngle);
         temp = pthis->actor.world.pos.y - pthis->ceilingPos.y;
         swayVecBase.x = Math_SinS(swayAngle) * temp;

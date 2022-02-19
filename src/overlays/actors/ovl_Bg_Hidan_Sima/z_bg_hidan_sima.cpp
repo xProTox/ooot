@@ -253,10 +253,10 @@ Gfx* func_8088EB54(GlobalContext* globalCtx, BgHidanSima* pthis, Gfx* gfx) {
     cos = Math_CosS(pthis->dyna.actor.world.rot.y + 0x8000);
     sin = Math_SinS(pthis->dyna.actor.world.rot.y + 0x8000);
 
-    phi_s5 = (60 - pthis->timer) >> 1;
+    phi_s5 = (60 - (s32)pthis->timer) >> 1;
     phi_s5 = CLAMP_MAX(phi_s5, 3);
 
-    v0 = 3 - (pthis->timer >> 1);
+    v0 = 3 - ((s32)pthis->timer >> 1);
     v0 = CLAMP_MIN(v0, 0);
 
     mtxF.xw = pthis->dyna.actor.world.pos.x + ((79 - ((pthis->timer % 6) * 4)) + v0 * 25) * sin;

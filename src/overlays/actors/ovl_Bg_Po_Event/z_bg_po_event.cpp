@@ -286,7 +286,7 @@ void BgPoEvent_BlockWait(BgPoEvent* pthis, GlobalContext* globalCtx) {
 }
 
 void BgPoEvent_BlockShake(BgPoEvent* pthis, GlobalContext* globalCtx) {
-    DECR(pthis->timer);
+    DECRT(pthis->timer);
     if (pthis->timer < 15) {
         pthis->dyna.actor.world.pos.x = pthis->dyna.actor.home.pos.x + 2.0f * ((pthis->timer % 3) - 1);
         if (!(pthis->timer % 4)) {
@@ -459,7 +459,7 @@ void BgPoEvent_BlockReset(BgPoEvent* pthis, GlobalContext* globalCtx) {
         sPuzzleState = 0;
         if (pthis->type == 1) {
             pthis->timer += 10;
-            pthis->timer = CLAMP_MAX(pthis->timer, 120);
+            pthis->timer = CLAMP_MAX(pthis->timer, Timer(120));
         }
     }
 }
@@ -497,7 +497,7 @@ void BgPoEvent_AmyPuzzle(BgPoEvent* pthis, GlobalContext* globalCtx) {
     } else if (sPuzzleState == 0x20) {
         Actor_Kill(&pthis->dyna.actor);
     } else {
-        DECR(pthis->timer);
+        DECRT(pthis->timer);
     }
 }
 
@@ -545,7 +545,7 @@ void BgPoEvent_PaintingPresent(BgPoEvent* pthis, GlobalContext* globalCtx) {
     Actor* thisx = &pthis->dyna.actor;
     Player* player = GET_PLAYER(globalCtx);
 
-    DECR(pthis->timer);
+    DECRT(pthis->timer);
 
     if (((pthis->timer == 0) || ((thisx->xzDistToPlayer < 150.0f) && (thisx->yDistToPlayer < 50.0f)) ||
          (func_8002DD78(player) && (thisx->xzDistToPlayer < 320.0f) &&

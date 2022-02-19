@@ -574,7 +574,7 @@ void EnDekubaba_Retract(EnDekubaba* pthis, GlobalContext* globalCtx) {
         pthis->size * 0.01f * (0.5f + pthis->timer * (1.0f / 30));
     Math_ScaledStepToS(&pthis->actor.shape.rot.x, -0x4000, 0x300);
 
-    headDistVertical = (sinf(CLAMP_MAX(pthis->timer * 0.033f, 0.7f) * M_PI) * 32.0f) + 14.0f;
+    headDistVertical = (sinf(CLAMP_MAX((float)pthis->timer * 0.033f, 0.7f) * M_PI) * 32.0f) + 14.0f;
 
     if (pthis->actor.shape.rot.x < -0x38E3) {
         headDistHorizontal = 0.0f;

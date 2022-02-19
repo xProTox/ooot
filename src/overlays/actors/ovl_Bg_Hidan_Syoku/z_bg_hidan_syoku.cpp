@@ -81,7 +81,7 @@ void func_8088F514(BgHidanSyoku* pthis, GlobalContext* globalCtx) {
     if (pthis->timer != 0) {
         pthis->timer--;
     }
-    pthis->dyna.actor.world.pos.y = (cosf(pthis->timer * (M_PI / 140)) * 540.0f) + pthis->dyna.actor.home.pos.y;
+    pthis->dyna.actor.world.pos.y = (cosf(pthis->timer * (M_PI / 140.0f)) * 540.0f) + pthis->dyna.actor.home.pos.y;
     if (pthis->timer == 0) {
         func_8088F47C(pthis);
     } else {

@@ -83,7 +83,7 @@ struct EnClearTagEffect {
     /* 0x0028 */ Color_RGBAf primColor;
     /* 0x0038 */ Color_RGBAf envColor;
     /* 0x0048 */ s16 bounces;
-    /* 0x004A */ s16 timer;
+    /* 0x004A */ Timer timer;
     /* 0x004C */ f32 scale;
     /* 0x0050 */ f32 maxScale;
     /* 0x0054 */ f32 rotationY;

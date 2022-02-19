@@ -463,10 +463,207 @@ typedef Frame<s8> FrameS8;
 typedef Frame<u8> TimerU8;
 typedef Frame<s8> TimerS8;
 
-typedef Frame<s64> Timer;
-typedef Frame<s64> Rotation;
-typedef Frame<s64> Counter;
+class Timer
+{
+	public:
+	Timer() : m_counter(0)
+	{
+	}
 
+	Timer(float n) : m_counter(n)
+	{
+	}
+
+	Timer& operator++() // pre
+	{
+		m_counter++;
+		return *this;
+	}
+
+	Timer operator++(int) // post
+	{
+		auto r = *this;
+		m_counter++;
+		return r;
+	}
+
+	Timer& operator--() // pre
+	{
+		m_counter--;
+		return *this;
+	}
+
+	Timer operator--(int) // post
+	{
+		auto r = *this;
+		m_counter--;
+		return r;
+	}
+
+	Timer& dec()
+	{
+		if(m_counter)
+		{
+			m_counter -= (float)FRAMERATE_MAX / 20.0f;
+		}
+		return *this;
+	}
+
+	s32 whole() const
+	{
+		return (s32)m_counter;
+	}
+
+	operator float() const
+	{
+		return m_counter;
+	}
+
+	/*explicit operator s64() const
+	{
+		return (s64)m_counter;
+	}
+
+	explicit operator s32() const
+	{
+		return (s32)m_counter;
+	}
+
+	explicit operator s16() const
+	{
+		return (s16)m_counter;
+	}
+
+	explicit operator s8() const
+	{
+		return (s8)m_counter;
+	}*/
+
+	Timer& operator+=(const Timer f)
+	{
+		m_counter += (float)f;
+		return *this;
+	}
+
+	Timer& operator-=(const Timer f)
+	{
+		m_counter -= (float)f;
+		return *this;
+	}
+
+	Timer operator+(const Timer f) const
+	{
+		return Timer(m_counter + (float)f);
+	}
+
+	Timer operator-(const Timer f) const
+	{
+		return Timer(m_counter - (float)f);
+	}
+
+
+	Timer& operator+=(float f)
+	{
+		m_counter += f * (float)FRAMERATE_MAX / 20.0f;
+		return *this;
+	}
+
+	Timer& operator-=(float f)
+	{
+		m_counter -= f * (float)FRAMERATE_MAX / 20.0f;
+		return *this;
+	}
+
+	Timer operator+(float f) const
+	{
+		return Timer(m_counter + f);
+	}
+
+	Timer operator-(float f) const
+	{
+		return Timer(m_counter - f);
+	}
+
+	Timer operator*(float f) const
+	{
+		return Timer(m_counter * f);
+	}
+
+	Timer operator/(float f) const
+	{
+		return Timer(m_counter / f);
+	}
+
+
+	Timer operator+(double f) const
+	{
+		return Timer(m_counter + f);
+	}
+
+	Timer operator-(double f) const
+	{
+		return Timer(m_counter - f);
+	}
+
+	Timer operator*(double f) const
+	{
+		return Timer(m_counter * f);
+	}
+
+	Timer operator/(double f) const
+	{
+		return Timer(m_counter / f);
+	}
+
+
+	Timer operator+(s32 f) const
+	{
+		return Timer(m_counter + f);
+	}
+
+	Timer operator-(s32 f) const
+	{
+		return Timer(m_counter - f);
+	}
+
+	Timer operator*(s32 f) const
+	{
+		return Timer(m_counter * f);
+	}
+
+	Timer operator/(s32 f) const
+	{
+		return Timer(m_counter / f);
+	}
+
+	s32 operator%(s32 n) const
+	{
+		return whole() % n;
+	}
+
+	Timer operator&(long n) const
+	{
+		return Timer(whole() & n);
+	}
+
+	s32 operator<<(long n)
+	{
+		return whole() << n;
+	}
+
+	s32 operator>>(long n)
+	{
+		return whole() >> n;
+	}
+
+	protected:
+	float m_counter;
+};
+
+//typedef Frame<s64> Timer;
+typedef Frame<s64> Rotation;
+typedef Timer Counter;
+/*
 template <class T> bool operator<(T a, Frame<T> b)
 {
 	return b.operator>=(a);
@@ -567,6 +764,4 @@ static Timer operator-(s32 a, Timer b)
 {
 	return Timer(a).operator-(b);
 }
-
-
-
+*/

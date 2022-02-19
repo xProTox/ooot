@@ -115,7 +115,7 @@ void MagicDark_DiamondUpdate(Actor* thisx, GlobalContext* globalCtx) {
     thisx->scale.x *= 1.3f;
     thisx->scale.z *= 1.3f;
 
-    phi_a0 = (pthis->timer < 20) ? (pthis->timer * 12) : 255;
+    phi_a0 = (pthis->timer < 20) ? u8(pthis->timer * 12) : 255;
 
     if (nayrusLoveTimer >= 1180) {
         pthis->primAlpha = 15595 - (nayrusLoveTimer * 13);

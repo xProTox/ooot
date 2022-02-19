@@ -420,7 +420,7 @@ void EnDodongo_SetupStunned(EnDodongo* pthis) {
 
 void EnDodongo_Idle(EnDodongo* pthis, GlobalContext* globalCtx) {
     SkelAnime_Update(&pthis->skelAnime);
-    if ((DECR(pthis->timer) == 0) && Animation_OnFrame(&pthis->skelAnime, 0.0f)) {
+    if ((DECRT(pthis->timer) == 0) && Animation_OnFrame(&pthis->skelAnime, 0.0f)) {
         EnDodongo_SetupWalk(pthis);
     }
 }

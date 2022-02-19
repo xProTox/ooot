@@ -41,7 +41,7 @@ struct DemoEffectLightRing {
     /* 0x00 */ u8 timerIncrement;
     /* 0x01 */ u8 alpha;
     /* 0x02 */ u8 pad;
-    /* 0x04 */ s16 timer;
+    /* 0x04 */ Timer timer;
 };
 
 struct DemoEffectTriforceSpot {
@@ -69,7 +69,7 @@ struct DemoEffectJewel {
     /* 0x00 */ u8 type;
     /* 0x01 */ u8 isPositionInit;
     /* 0x02 */ u8 alpha;
-    /* 0x04 */ s16 timer;
+    /* 0x04 */ Timer timer;
 };
 
 struct DemoEffectDust {

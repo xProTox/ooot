@@ -19,7 +19,7 @@ struct EnDntJiji {
     /* 0x0230 */ Vec3f flowerPos;
     /* 0x023C */ u8 isSolid;
     /* 0x023E */ s16 action;
-    /* 0x0240 */ s16 timer;
+    /* 0x0240 */ Timer timer;
     /* 0x0242 */ s16 sfxTimer;
     /* 0x0244 */ s16 blinkTimer;
     /* 0x0246 */ s16 unkTimer;
