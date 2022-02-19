@@ -189,9 +189,9 @@ struct Actor {
     /* 0x10C */ u8 isTargeted; // Set to true if the actor is currently being targeted by the player
     /* 0x10D */ u8 targetPriority; // Lower values have higher priority. Resets to 0 when player stops targeting
     /* 0x10E */ u16 textId; // Text ID to pass to link/display when interacting with the actor
-    /* 0x110 */ u16 freezeTimer; // Actor does not update when set. Timer decrements automatically
+    /* 0x110 */ Timer freezeTimer; // Actor does not update when set. Timer decrements automatically
     /* 0x112 */ u16 colorFilterParams; // Set color filter to red, blue, or white. Toggle opa or xlu
-    /* 0x114 */ u8 colorFilterTimer; // A non-zero value enables the color filter. Decrements automatically
+    /* 0x114 */ Timer colorFilterTimer; // A non-zero value enables the color filter. Decrements automatically
     /* 0x115 */ u8 isDrawn; // Set to true if the actor is currently being drawn. Always stays false for lens actors
     /* 0x116 */ u8 dropFlag; // Configures what item is dropped by the actor from `Item_DropCollectibleRandom`
     /* 0x117 */ u8 naviEnemyId; // Sets what 0600 dialog to display when talking to navi. Default 0xFF
@@ -334,10 +334,10 @@ typedef void (*EnAObjActionFunc)(struct EnAObj*, struct GlobalContext*);
 struct EnAObj {
     /* 0x000 */ DynaPolyActor dyna;
     /* 0x164 */ EnAObjActionFunc actionFunc;
-    /* 0x168 */ s32 rotateWaitTimer;
+    /* 0x168 */ Timer rotateWaitTimer;
     /* 0x16C */ s16 textId;
     /* 0x16E */ s16 rotateState;
-    /* 0x170 */ s16 rotateForTimer;
+    /* 0x170 */ Timer rotateForTimer;
     /* 0x172 */ s16 rotSpeedY;
     /* 0x174 */ s16 rotSpeedX;
     /* 0x178 */ f32 focusYoffset;
@@ -391,8 +391,8 @@ struct TitleCardContext {
     /* 0x06 */ s16 y;
     /* 0x08 */ u8 width;
     /* 0x09 */ u8 height;
-    /* 0x0A */ u8 durationTimer; // how long the title card appears for before fading
-    /* 0x0B */ u8 delayTimer;    // how long the title card waits to appear
+    /* 0x0A */ Timer durationTimer; // how long the title card appears for before fading
+    /* 0x0B */ Timer delayTimer;    // how long the title card waits to appear
     /* 0x0C */ s16 alpha;
     /* 0x0E */ s16 intensity;
 }; // size = 0x10
@@ -424,7 +424,7 @@ struct ActorListEntry {
 
 struct ActorContext
 {
-    /* 0x0000 */ u8 freezeFlashTimer;
+    /* 0x0000 */ Timer freezeFlashTimer;
     /* 0x0001 */ char unk_01[0x01];
     /* 0x0002 */ u8 unk_02;
     /* 0x0003 */ u8 unk_03;

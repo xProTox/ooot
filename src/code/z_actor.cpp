@@ -738,8 +738,8 @@ void TitleCard_InitPlaceName(GlobalContext* globalCtx, TitleCardContext* titleCt
 }
 
 void TitleCard_Update(GlobalContext* globalCtx, TitleCardContext* titleCtx) {
-    if (DECR(titleCtx->delayTimer) == 0) {
-        if (DECR(titleCtx->durationTimer) == 0) {
+    if (DECRT(titleCtx->delayTimer) == 0) {
+        if (DECRT(titleCtx->durationTimer) == 0) {
             Math_StepToS(&titleCtx->alpha, 0, 30);
             Math_StepToS(&titleCtx->intensity, 0, 70);
         } else {
@@ -2126,7 +2126,7 @@ void Actor_UpdateAll(GlobalContext* globalCtx, ActorContext* actorCtx) {
                 actor->yawTowardsPlayer = Actor_WorldYawTowardActor(actor, &player->actor);
                 actor->flags &= ~ACTOR_FLAG_24;
 
-                if ((DECR(actor->freezeTimer) == 0) && (actor->flags & (ACTOR_FLAG_4 | ACTOR_FLAG_UNCULLED))) {
+                if ((DECRT(actor->freezeTimer) == 0) && (actor->flags & (ACTOR_FLAG_4 | ACTOR_FLAG_UNCULLED))) {
                     if (actor == player->unk_664) {
                         actor->isTargeted = true;
                     } else {
