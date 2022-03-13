@@ -1,0 +1,13 @@
+{
+    "start": "START_BUTTON",
+    "b": "A_BUTTON",
+    "leftshoulder": "Z_TRIG",
+    "x": "B_BUTTON",
+    "rightshoulder": "R_TRIG",
+    "a": "A_BUTTON",
+    "y": "B_BUTTON",
+    "dpleft": "L_CBUTTONS",
+    "dpright": "R_CBUTTONS",
+    "dpup": "U_CBUTTONS",
+    "dpdown": "D_CBUTTONS"
+}
