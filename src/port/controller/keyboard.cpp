@@ -403,11 +403,47 @@ namespace oot::hid
 		if(buttons & SDL_BUTTON(SDL_BUTTON_LEFT))
 			m_state.button |= (uint16_t)Button::B_BUTTON;
 
-		if(buttons & SDL_BUTTON(SDL_BUTTON_RIGHT))
-			m_state.button |= (uint16_t)Button::A_BUTTON;
+		//if(buttons & SDL_BUTTON(SDL_BUTTON_RIGHT))
+		//	m_state.button |= (uint16_t)Button::A_BUTTON;
 
-		if(buttons & SDL_BUTTON(SDL_BUTTON_MIDDLE))
-			walk = true;
+		//if(buttons & SDL_BUTTON(SDL_BUTTON_MIDDLE))
+		//	walk = true;
+
+		if(buttons&SDL_BUTTON(SDL_BUTTON_RIGHT))
+		{
+			int iThreshold = 25;
+			bool bMoved    = false;
+
+			// todo save walking direction, invert stick
+			// catch mouse on 0x0, only let it move in a certain threshold
+			// when reaching threshold, reset to 0x0
+			// move x127 units per tick into the direction, setable via stick_x/stick_y variables
+
+			// left
+			if(m_state.mouse_x + mouse_delta_x * 4 < m_state.mouse_x - iThreshold)
+			{
+				m_state.r_stick_x += -127;
+			}
+
+			// right
+			else if(m_state.mouse_x + mouse_delta_x * 4 > m_state.mouse_x + iThreshold)
+			{
+				m_state.r_stick_x += 127;
+			}
+
+			// up
+			if(m_state.mouse_y + mouse_delta_y * 4 > m_state.mouse_y + iThreshold)
+			{
+				m_state.r_stick_y += -127;
+			}
+
+			// down
+			else if(m_state.mouse_y + mouse_delta_y * 4 < m_state.mouse_y - iThreshold)
+			{
+				m_state.r_stick_y += 127;
+			}
+		}
+
 
 		m_state.mouse_x += mouse_delta_x * 4;
 		m_state.mouse_y += mouse_delta_y * 4;

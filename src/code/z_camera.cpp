@@ -45,6 +45,10 @@ s32 Camera_ChangeModeFlags(Camera* camera, s16 mode, u8 flags);
 s32 Camera_QRegInit(void);
 s32 Camera_CheckWater(Camera* camera);
 
+
+#define FIZZLE_CAM
+
+
 #define RELOAD_PARAMS \
     (camera->animState == 0 || camera->animState == 0xA || camera->animState == 0x14 || R_RELOAD_CAM_PARAMS)
 
@@ -117,6 +121,8 @@ f32 Camera_LERPCeilF(f32 target, f32 cur, f32 stepScale, f32 minDiff) {
  * Performs linear interpoloation between `cur` and `target`.  If `cur` is within
  * `minDiff` units, The result is rounded down to `cur`
  */
+// NONONO We are living in 2022 please fucking update mate
+
 f32 Camera_LERPFloorF(f32 target, f32 cur, f32 stepScale, f32 minDiff) {
     f32 diff = target - cur;
     f32 step;
@@ -136,6 +142,8 @@ f32 Camera_LERPFloorF(f32 target, f32 cur, f32 stepScale, f32 minDiff) {
  * Performs linear interpoloation between `cur` and `target`.  If `cur` is within
  * `minDiff` units, The result is rounded up to `target`
  */
+
+// NONONO We are living in 2022 please fucking update mate
 s16 Camera_LERPCeilS(s16 target, s16 cur, f32 stepScale, s16 minDiff) {
     s16 diff = target - cur;
     s16 step;
@@ -155,6 +163,8 @@ s16 Camera_LERPCeilS(s16 target, s16 cur, f32 stepScale, s16 minDiff) {
  * Performs linear interpoloation between `cur` and `target`.  If `cur` is within
  * `minDiff` units, The result is rounded down to `cur`
  */
+// NONONO We are living in 2022 please fucking update mate
+
 s16 Camera_LERPFloorS(s16 target, s16 cur, f32 stepScale, s16 minDiff) {
     s16 diff = target - cur;
     s16 step;
@@ -174,6 +184,8 @@ s16 Camera_LERPFloorS(s16 target, s16 cur, f32 stepScale, s16 minDiff) {
  * Performs linear interpoloation between `cur` and `target`.  If `cur` is within
  * `minDiff` units, The result is rounded up to `target`
  */
+// NONONO We are living in 2022 please fucking update mate
+
 void Camera_LERPCeilVec3f(Vec3f* target, Vec3f* cur, f32 yStepScale, f32 xzStepScale, f32 minDiff) {
     cur->x = Camera_LERPCeilF(target->x, cur->x, xzStepScale, minDiff);
     cur->y = Camera_LERPCeilF(target->y, cur->y, yStepScale, minDiff);
@@ -2621,7 +2633,7 @@ s32 Camera_Jump2(Camera* camera) {
 
     Camera_Vec3fVecSphGeoAdd(eyeNext, at, &adjAtToEyeDir);
     camBgChk.pos = *eyeNext;
-    if (Camera_BGCheckInfo(camera, at, &camBgChk)) {
+    if (Camera_BGCheckInfo(camera, at, &camBgChk)) { // !!! This will break peeking corners
         // Collision detected between at->eyeNext, Check if collision between
         // at->eyeNext, but parallel to at (pitch = 0).
         bgChkPos = camBgChk.pos;
