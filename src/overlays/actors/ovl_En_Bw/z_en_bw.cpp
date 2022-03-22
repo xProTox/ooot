@@ -467,7 +467,7 @@ void func_809CF984(EnBw* pthis, GlobalContext* globalCtx) {
     }
     SkelAnime_Update(&pthis->skelAnime);
     if (pthis->actor.bgCheckFlags & 3) {
-        floorPolyType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+	    floorPolyType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
         if ((floorPolyType == 2) || (floorPolyType == 3) || (floorPolyType == 9)) {
             Actor_Kill(&pthis->actor);
             return;

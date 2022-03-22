@@ -1758,7 +1758,7 @@ void EnTest_Update(Actor* thisx, GlobalContext* globalCtx) {
             floorProperty = func_80041EA4(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
 
             if ((floorProperty == 5) || (floorProperty == 0xC) ||
-                func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId) == 9) {
+                SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId) == 9) {
                 Actor_Kill(&pthis->actor);
                 return;
             }

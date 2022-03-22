@@ -390,6 +390,55 @@ namespace oot::hid
 		}
 #endif
 
+		
+#ifdef ENABLE_MOUSE
+		int mouse_delta_x = 0;
+		int mouse_delta_y = 0;
+
+		auto buttons = SDL_GetRelativeMouseState(&mouse_delta_x, &mouse_delta_y);
+
+		int iThreshold = 25;
+
+		bool bReset = true;
+
+		// left
+		if(mouse_delta_x * 4 < 0 - iThreshold)
+		{
+			m_state.mouse_x += 127;
+			bReset = false;
+		}
+		// right
+		else if(mouse_delta_x * 4 > iThreshold)
+		{
+			m_state.mouse_x += -127;
+			bReset = false;
+		}
+
+		// up
+		if(mouse_delta_y * 4 < 0 - iThreshold)
+		{
+			m_state.mouse_y += -127;
+			bReset = false;
+		}
+		// down
+		else if(mouse_delta_y * 4 > iThreshold)
+		{
+			m_state.mouse_y += 127;
+			bReset = false;
+		}
+
+		printf("Mouse: %d, %d\n", m_state.mouse_x, m_state.mouse_y);
+
+		if(bReset == true)
+		{
+			m_state.mouse_x = 0;
+			m_state.mouse_y = 0;
+		}
+
+		/*m_state.mouse_x += mouse_delta_x * 4;
+		m_state.mouse_y += mouse_delta_y * 4;*/
+#endif
+
 		for(const auto& [scancode, input] : m_keyBindings)
 		{
 			if(m_buttonState[scancode])

@@ -16,5 +16,6 @@ s8 PadUtils_GetRelYImpl(Input* input);
 void PadUtils_Init(Input* input);
 void PadUtils_ResetPressRel(Input* input);
 void PadUtils_SetRelXY(Input* input, s32 x, s32 y);
+void PadUtils_SetMouseRelXY(Input* input, s32 x, s32 y);
 void PadUtils_UpdateRelXY(Input* input);
 void func_800FCB70(void);

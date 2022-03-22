@@ -229,6 +229,7 @@ namespace platform::window
 				set_fullscreen(true, false);
 			}
 #endif
+			SDL_SetRelativeMouseMode(SDL_TRUE);
 			set_vsync();
 			resize(width(), height());
 		}

@@ -48,11 +48,14 @@ namespace oot::hid
 		errnum	  = 0;
 		r_stick_x = 0;
 		r_stick_y = 0;
+		mouse_x	  = 0;
+		mouse_y	  = 0;
 		has_mouse = false;
 	}
 
 	Controller::Controller(bool isLocal) :
-	    rawStickX(0), rawStickY(0), stickX(0), stickY(0), stickMag(0), buttonDown(0), buttonPressed(0), r_rawStickX(0), r_rawStickY(0), r_stickX(0), r_stickY(0), r_stickMag(0), m_isLocal(isLocal), m_state(), m_motorEnabled(false)
+	    rawStickX(0), rawStickY(0), stickX(0), stickY(0), stickMag(0), buttonDown(0), buttonPressed(0), r_rawStickX(0), r_rawStickY(0), r_stickX(0), r_stickY(0), r_stickMag(0), m_isLocal(isLocal), m_state(), m_motorEnabled(false),
+	    mouse_x(0), mouse_y(0)
 	{
 	}
 
@@ -79,11 +82,17 @@ namespace oot::hid
 		if(abs(m_state.r_stick_y) < abs(controller.m_state.r_stick_y))
 			m_state.r_stick_y = controller.m_state.r_stick_y;
 
-		if(controller.hasMouse())
+		if(controller.m_state.mouse_x != m_state.mouse_x || controller.m_state.mouse_y != m_state.mouse_y)
 		{
 			m_state.mouse_x = controller.m_state.mouse_x;
 			m_state.mouse_y = controller.m_state.mouse_y;
 		}
+
+		/*if(controller.hasMouse())
+		{
+			m_state.mouse_x = controller.m_state.mouse_x;
+			m_state.mouse_y = controller.m_state.mouse_y;
+		}*/
 
 		m_state.has_mouse |= controller.m_state.has_mouse;
 	}
@@ -246,6 +255,10 @@ namespace oot::hid
 		if(this->r_rawStickY >= 8)
 			this->r_stickY = this->r_rawStickY - 6;
 
+
+		this->mouse_x = m_state.mouse_x;
+		this->mouse_y = m_state.mouse_y;
+
 		// calculate f32 magnitude from the center by vector length.
 		this->r_stickMag = sqrtf(this->r_stickX * this->r_stickX + this->r_stickY * this->r_stickY);
 
@@ -259,7 +272,7 @@ namespace oot::hid
 		}
 	}
 
-	s64 Controller::mouse_x() const
+	/*s64 Controller::mouse_x() const
 	{
 		return m_state.mouse_x * (oot::config().camera().mousexInvert() ? -1 : 1) * oot::config().camera().mousexScaler();
 	}
@@ -267,7 +280,7 @@ namespace oot::hid
 	s64 Controller::mouse_y() const
 	{
 		return m_state.mouse_y * (oot::config().camera().mouseyInvert() ? -1 : 1) * oot::config().camera().mouseyScaler();
-	}
+	}*/
 
 	/*bool Controller::updateRebind(int input)
 	{

@@ -47,6 +47,12 @@ s8 PadUtils_GetCurY(Input* input) {
     return input->cur.stick_y;
 }
 
+void PadUtils_SetMouseRelXY(Input* input, s32 x, s32 y)
+{
+	input->rel.mouse_x = x;
+	input->rel.mouse_y = y;
+}
+
 void PadUtils_SetRelXY(Input* input, s32 x, s32 y) {
     input->rel.stick_x = x;
     input->rel.stick_y = y;
@@ -91,5 +97,37 @@ void PadUtils_UpdateRelXY(Input* input) {
         relY = 0;
     }
 
+    s32 curMouseX = input->cur.mouse_x;
+    s32 curMouseY = input->cur.mouse_y;
+    s32 relMouseX;
+    s32 relMouseY;
+
+    if(curX > 7)
+    {
+	    relMouseX = (curMouseX < 0x43) ? curMouseX - 7 : 0x43 - 7;
+    }
+    else if(curX < -7)
+    {
+	    relMouseX = (curMouseX > -0x43) ? curMouseX + 7 : -0x43 + 7;
+    }
+    else
+    {
+	    relMouseX = 0;
+    }
+
+    if(curY > 7)
+    {
+	    relMouseY = (curMouseY < 0x43) ? curMouseY - 7 : 0x43 - 7;
+    }
+    else if(curY < -7)
+    {
+	    relMouseY = (curMouseY > -0x43) ? curMouseY + 7 : -0x43 + 7;
+    }
+    else
+    {
+	    relMouseY = 0;
+    }
+
     PadUtils_SetRelXY(input, relX, relY);
+    PadUtils_SetMouseRelXY(input, relMouseX, relMouseY);
 }

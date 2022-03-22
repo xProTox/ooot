@@ -42,6 +42,9 @@ namespace oot
 					m_data.button  = state.button;
 					m_data.stick_x = state.stick_x;
 					m_data.stick_y = state.stick_y;
+					if(state.mouse_x != 0)
+						m_data.mouse_x = state.mouse_x;
+					m_data.mouse_y = state.mouse_y;
 
 					//Is there any real data?
 					m_isUsed = m_data.button || m_data.stick_x || m_data.stick_y;
@@ -53,6 +56,9 @@ namespace oot
 					ret.button  = m_data.button;
 					ret.stick_x = m_data.stick_x;
 					ret.stick_y = m_data.stick_y;
+					if(m_data.mouse_x != 0)
+						ret.mouse_x = m_data.mouse_x;
+					ret.mouse_y = m_data.mouse_y;
 					return ret;
 				}
 
@@ -78,6 +84,8 @@ namespace oot
 					u16 button = 0x0000;
 					s8 stick_x = 0; /* -80 <= stick_x <= 80 */
 					s8 stick_y = 0; /* -80 <= stick_y <= 80 */
+					s8 mouse_x = 0;
+					s8 mouse_y = 0;
 				} m_data;
 			};
 
@@ -99,9 +107,12 @@ namespace oot
 			bool m_hasGyro	   = false;
 #endif
 
+			s16 mouse_x;
+			s16 mouse_y;
 
-			s64 mouse_x() const;
-			s64 mouse_y() const;
+
+			/*s64 mouse_x() const;
+			s64 mouse_y() const;*/
 
 			Controller(bool isLocal = true);
 			~Controller();

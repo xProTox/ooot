@@ -676,7 +676,7 @@ void EnBb_Down(EnBb* pthis, GlobalContext* globalCtx) {
     }
     if (pthis->actor.bgCheckFlags & 3) {
         if (pthis->actor.params == ENBB_RED) {
-            s32 floorType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+		    s32 floorType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
 
             if ((floorType == 2) || (floorType == 3) || (floorType == 9)) {
                 pthis->moveMode = BBMOVE_HIDDEN;
@@ -795,7 +795,7 @@ void EnBb_Red(EnBb* pthis, GlobalContext* globalCtx) {
                 pthis->actor.bgCheckFlags &= ~8;
             }
             if (pthis->actor.bgCheckFlags & 1) {
-                floorType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+		        floorType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
                 if ((floorType == 2) || (floorType == 3) || (floorType == 9)) {
                     pthis->moveMode = BBMOVE_HIDDEN;
                     pthis->timer = 10;

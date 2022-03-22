@@ -409,7 +409,7 @@ BgImage* func_80096A74(PolygonType1* polygon1, GlobalContext* globalCtx) {
     camera = GET_ACTIVE_CAM(globalCtx);
     camId = camera->camDataIdx;
     // jfifid
-    camId2 = func_80041C10(&globalCtx->colCtx, camId, BGCHECK_SCENE)[2].y;
+    camId2 = SurfaceType_GetCameraPositionData(&globalCtx->colCtx, camId, BGCHECK_SCENE)[2].y;
     if (camId2 >= 0) {
         camId = camId2;
     }

@@ -104,9 +104,9 @@ void func_8003ECA8(GlobalContext* globalCtx, DynaCollisionContext* dyna, s32 bgI
 void func_8003EE6C(GlobalContext* globalCtx, DynaCollisionContext* dyna);
 void func_8003F8EC(GlobalContext* globalCtx, DynaCollisionContext* dyna, Actor* actor);
 void func_800418D0(CollisionContext* colCtx, GlobalContext* globalCtx);
-u16 func_80041A4C(CollisionContext* colCtx, u32 camId, s32 bgId);
-Vec3s* func_80041C10(CollisionContext* colCtx, s32 camId, s32 bgId);
-u32 func_80041D4C(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId);
+u16 SurfaceType_GetCameraSurfaceType(CollisionContext* colCtx, u32 camId, s32 bgId);
+Vec3s* SurfaceType_GetCameraPositionData(CollisionContext* colCtx, s32 camId, s32 bgId);
+u32 SurfaceType_IsSolid(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId);
 u32 func_80041D70(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId);
 s32 func_80041DB8(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId);
 s32 func_80041DE4(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId);

@@ -47,6 +47,9 @@ void Players::update()
 		gPadMgr.inputs[i].cur.stick_x = player.controller().state().stick_x;
 		gPadMgr.inputs[i].cur.stick_y = player.controller().state().stick_y;
 
+		gPadMgr.inputs[i].cur.mouse_x = player.controller().state().mouse_x;
+		gPadMgr.inputs[i].cur.mouse_y = player.controller().state().mouse_y;
+
 		gPadMgr.ctrlrIsConnected[i] = true;
 		i++;
 	}

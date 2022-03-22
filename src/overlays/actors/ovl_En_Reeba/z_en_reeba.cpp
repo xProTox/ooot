@@ -144,7 +144,7 @@ void EnReeba_Init(Actor* thisx, GlobalContext* globalCtx) {
     pthis->actor.colChkInfo.damageTable = &sDamageTable;
     Actor_UpdateBgCheckInfo(globalCtx, &pthis->actor, 35.0f, 60.0f, 60.0f, 0x1D);
 
-    surfaceType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+    surfaceType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
 
     if ((surfaceType != 4) && (surfaceType != 7)) {
         Actor_Kill(&pthis->actor);
@@ -262,7 +262,7 @@ void func_80AE5270(EnReeba* pthis, GlobalContext* globalCtx) {
         Math_ApproachF(&pthis->actor.shape.shadowScale, 12.0f, 3.0f, 1.0f);
     }
 
-    surfaceType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+    surfaceType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
 
     if ((surfaceType != 4) && (surfaceType != 7)) {
         pthis->actor.speedXZ = 0.0f;
@@ -293,7 +293,7 @@ void func_80AE53AC(EnReeba* pthis, GlobalContext* globalCtx) {
         Math_ApproachF(&pthis->actor.shape.shadowScale, 12.0f, 3.0f, 1.0f);
     }
 
-    surfaceType = func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
+    surfaceType = SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId);
 
     if (((surfaceType != 4) && (surfaceType != 7)) || (pthis->actor.xzDistToPlayer > 400.0f) ||
         (pthis->actor.bgCheckFlags & 8)) {

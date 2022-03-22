@@ -4043,7 +4043,7 @@ s32 func_80839034(GlobalContext* globalCtx, Player* pthis, CollisionPoly* poly, 
             }
 
             if (!(pthis->stateFlags1 & 0x20800000) && !(pthis->stateFlags2 & 0x40000) && !Player_IsSwimmingWithoutIronBoots(pthis) &&
-                (temp = func_80041D4C(&globalCtx->colCtx, poly, bgId), (temp != 10)) &&
+                (temp = SurfaceType_IsSolid(&globalCtx->colCtx, poly, bgId), (temp != 10)) &&
                 ((sp34 < 100) || (pthis->actor.bgCheckFlags & 1))) {
 
                 if (temp == 11) {
@@ -7581,7 +7581,7 @@ s32 func_80842DF4(GlobalContext* globalCtx, Player* pthis) {
                     if (BgCheck_EntityLineTest1(&globalCtx->colCtx, &sp68, &pthis->swordInfo[0].tip, &sp5C, &sp78, true,
                                                 false, false, true, &sp74) &&
                         !SurfaceType_IsIgnoredByEntities(&globalCtx->colCtx, sp78, sp74) &&
-                        (func_80041D4C(&globalCtx->colCtx, sp78, sp74) != 6) &&
+                        (SurfaceType_IsSolid(&globalCtx->colCtx, sp78, sp74) != 6) &&
                         (func_8002F9EC(globalCtx, &pthis->actor, sp78, sp74, &sp5C) == 0)) {
 
                         if (pthis->heldItemActionParam == PLAYER_AP_HAMMER) {
@@ -9636,7 +9636,7 @@ void func_80847BA0(GlobalContext* globalCtx, Player* pthis) {
     }
 
     if (pthis->actor.bgCheckFlags & 1) {
-        D_808535E4 = func_80041D4C(&globalCtx->colCtx, spC0, pthis->actor.floorBgId);
+        D_808535E4 = SurfaceType_IsSolid(&globalCtx->colCtx, spC0, pthis->actor.floorBgId);
 
         if (!func_80847A78(pthis)) {
             f32 sp58;
@@ -10569,25 +10569,51 @@ s16 func_8084ABD8(GlobalContext* globalCtx, Player* pthis, s32 arg2, s16 arg3) {
     s16 temp3;
 
     if (!func_8002DD78(pthis) && !func_808334B4(pthis) && (arg2 == 0)) {
-        temp2 = sControlInput->rel.stick_y * 240.0f;
-        Math_SmoothStepToS(&pthis->actor.focus.rot.x, temp2, 14, 4000, 30);
+        if (sControlInput->rel.mouse_y != 0)
+        {
+		    temp2	= sControlInput->rel.mouse_y * 240.0f;
+		    Math_SmoothStepToS(&pthis->actor.focus.rot.x, temp2, 14, 4000, 30);
 
-        temp2 = sControlInput->rel.stick_x * -16.0f;
-        temp2 = CLAMP(temp2, -3000, 3000);
-        pthis->actor.focus.rot.y += temp2;
+		    temp2 = sControlInput->rel.mouse_x * -16.0f;
+		    temp2 = CLAMP(temp2, -3000, 3000);
+		    pthis->actor.focus.rot.y += temp2;
+        }
+        else {
+		    temp2	= sControlInput->rel.stick_y * 240.0f;
+		    Math_SmoothStepToS(&pthis->actor.focus.rot.x, temp2, 14, 4000, 30);
+
+		    temp2 = sControlInput->rel.stick_x * -16.0f;
+		    temp2 = CLAMP(temp2, -3000, 3000);
+		    pthis->actor.focus.rot.y += temp2;
+        }
     } else {
-	    temp1 = (pthis->stateFlags1 & PLAYER_STATE_HORSE_MOUNTED) ? 3500 : 14000; // Riding a horse?
-        temp3 = ((sControlInput->rel.stick_y >= 0) ? 1 : -1) *
-                (s32)((1.0f - Math_CosS(sControlInput->rel.stick_y * 200)) * 1500.0f);
-        pthis->actor.focus.rot.x += temp3;
-        pthis->actor.focus.rot.x = CLAMP(pthis->actor.focus.rot.x, -temp1, temp1);
+        if (sControlInput->rel.mouse_y != 0 || sControlInput->rel.mouse_x != 0)
+        {
+		    temp1 = (pthis->stateFlags1 & PLAYER_STATE_HORSE_MOUNTED) ? 3500 : 14000; // Riding a horse?
+		    temp3 = ((sControlInput->rel.mouse_y >= 0) ? 1 : -1) * (s32)((1.0f - Math_CosS(sControlInput->rel.mouse_y * 200)) * 1500.0f);
+		    pthis->actor.focus.rot.x += temp3;
+		    pthis->actor.focus.rot.x = CLAMP(pthis->actor.focus.rot.x, -temp1, temp1);
 
-        temp1 = 19114;
-        temp2 = pthis->actor.focus.rot.y - pthis->actor.shape.rot.y;
-        temp3 = ((sControlInput->rel.stick_x >= 0) ? 1 : -1) *
-                (s32)((1.0f - Math_CosS(sControlInput->rel.stick_x * 200)) * -1500.0f);
-        temp2 += temp3;
-        pthis->actor.focus.rot.y = CLAMP(temp2, -temp1, temp1) + pthis->actor.shape.rot.y;
+		    temp1 = 19114;
+		    temp2 = pthis->actor.focus.rot.y - pthis->actor.shape.rot.y;
+		    temp3 = ((sControlInput->rel.mouse_x >= 0) ? 1 : -1) * (s32)((1.0f - Math_CosS(sControlInput->rel.mouse_x * 200)) * -1500.0f);
+		    temp2 += temp3;
+		    pthis->actor.focus.rot.y = CLAMP(temp2, -temp1, temp1) + pthis->actor.shape.rot.y;
+        }
+	    else
+	    {
+		    temp1 = (pthis->stateFlags1 & PLAYER_STATE_HORSE_MOUNTED) ? 3500 : 14000; // Riding a horse?
+		    temp3 = ((sControlInput->rel.stick_y >= 0) ? 1 : -1) * (s32)((1.0f - Math_CosS(sControlInput->rel.stick_y * 200)) * 1500.0f);
+		    pthis->actor.focus.rot.x += temp3;
+		    pthis->actor.focus.rot.x = CLAMP(pthis->actor.focus.rot.x, -temp1, temp1);
+
+		    temp1 = 19114;
+		    temp2 = pthis->actor.focus.rot.y - pthis->actor.shape.rot.y;
+		    temp3 = ((sControlInput->rel.stick_x >= 0) ? 1 : -1) * (s32)((1.0f - Math_CosS(sControlInput->rel.stick_x * 200)) * -1500.0f);
+		    temp2 += temp3;
+		    pthis->actor.focus.rot.y = CLAMP(temp2, -temp1, temp1) + pthis->actor.shape.rot.y;
+        } 
+       
     }
 
     pthis->unk_6AE |= 2;

@@ -3827,7 +3827,8 @@ u32 SurfaceType_GetCamDataIndex(CollisionContext* colCtx, CollisionPoly* poly, s
 /**
  * CamData return cameraSType
  */
-u16 func_80041A4C(CollisionContext* colCtx, u32 camId, s32 bgId) {
+u16 SurfaceType_GetCameraSurfaceType(CollisionContext* colCtx, u32 camId, s32 bgId)
+{
     u16 result;
     CollisionHeader* colHeader;
     CamData* camData;
@@ -3860,7 +3861,7 @@ u16 SurfaceType_GetCameraSType(CollisionContext* colCtx, CollisionPoly* poly, s3
     if (surfaceTypes == (SurfaceType*)gSegments[0]) {
         return 0;
     }
-    return func_80041A4C(colCtx, SurfaceType_GetCamDataIndex(colCtx, poly, bgId), bgId);
+    return SurfaceType_GetCameraSurfaceType(colCtx, SurfaceType_GetCamDataIndex(colCtx, poly, bgId), bgId);
 }
 
 /**
@@ -3906,7 +3907,7 @@ u16 SurfaceType_GetNumCameras(CollisionContext* colCtx, CollisionPoly* poly, s32
 /**
  * CamData Get camPosData
  */
-Vec3s* func_80041C10(CollisionContext* colCtx, s32 camId, s32 bgId) {
+Vec3s* SurfaceType_GetCameraPositionData(CollisionContext* colCtx, s32 camId, s32 bgId) {
     CollisionHeader* colHeader = BgCheck_GetCollisionHeader(colCtx, bgId);
     CamData* cameraDataList;
 
@@ -3939,7 +3940,7 @@ Vec3s* SurfaceType_GetCamPosData(CollisionContext* colCtx, CollisionPoly* poly, 
     if (surfaceTypes == (SurfaceType*)gSegments[0]) {
         return NULL;
     }
-    return func_80041C10(colCtx, SurfaceType_GetCamDataIndex(colCtx, poly, bgId), bgId);
+    return SurfaceType_GetCameraPositionData(colCtx, SurfaceType_GetCamDataIndex(colCtx, poly, bgId), bgId);
 }
 
 /**
@@ -3950,9 +3951,10 @@ u32 SurfaceType_GetSceneExitIndex(CollisionContext* colCtx, CollisionPoly* poly,
 }
 
 /**
- * SurfaceType Get ? Property (& 0x0003 E000)
+ * SurfaceType Get IsSolid Property (& 0x0003 E000)
  */
-u32 func_80041D4C(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId) {
+u32 SurfaceType_IsSolid(CollisionContext* colCtx, CollisionPoly* poly, s32 bgId)
+{
     return SurfaceType_GetData(colCtx, poly, bgId, 0) >> 13 & 0x1F;
 }
 

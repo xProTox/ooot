@@ -113,6 +113,8 @@ struct OSContPad {
     /* 0x00 */ u16 button;
     /* 0x02 */ s8 stick_x;
     /* 0x03 */ s8 stick_y;
+    s8 mouse_x;
+    s8 mouse_y;
     /* 0x04 */ u8 errnum;
 }; // size = 0x06
 

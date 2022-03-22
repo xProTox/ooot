@@ -116,7 +116,7 @@ void EnEncount1_SpawnLeevers(EnEncount1* pthis, GlobalContext* globalCtx) {
 
     if ((pthis->timer == 0) && (globalCtx->csCtx.state == CS_STATE_IDLE) && (pthis->curNumSpawn <= pthis->maxCurSpawns) &&
         (pthis->curNumSpawn < 5)) {
-        floorType = func_80041D4C(&globalCtx->colCtx, player->actor.floorPoly, player->actor.floorBgId);
+	    floorType = SurfaceType_IsSolid(&globalCtx->colCtx, player->actor.floorPoly, player->actor.floorBgId);
         if ((floorType != 4) && (floorType != 7) && (floorType != 12)) {
             pthis->numLeeverSpawns = 0;
         } else if (!(pthis->reduceLeevers && (pthis->actor.xzDistToPlayer > 1300.0f))) {

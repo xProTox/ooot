@@ -82,6 +82,8 @@ void PadMgr_RequestPadData(PadMgr* padMgr, Input* inputs, s32 mode) {
             PadUtils_UpdateRelXY(newInput);
             newInput->press.stick_x += (s8)(newInput->cur.stick_x - newInput->prev.stick_x);
             newInput->press.stick_y += (s8)(newInput->cur.stick_y - newInput->prev.stick_y);
+	        newInput->press.mouse_x += (s8)(newInput->cur.mouse_x - newInput->prev.mouse_x);
+	        newInput->press.mouse_y += (s8)(newInput->cur.mouse_y - newInput->prev.mouse_y);
             *newInput = *ogInput;
         } else {
             newInput->prev = newInput->cur;
@@ -92,6 +94,8 @@ void PadMgr_RequestPadData(PadMgr* padMgr, Input* inputs, s32 mode) {
             PadUtils_UpdateRelXY(newInput);
             newInput->press.stick_x += (s8)(newInput->cur.stick_x - newInput->prev.stick_x);
             newInput->press.stick_y += (s8)(newInput->cur.stick_y - newInput->prev.stick_y);
+	        newInput->press.mouse_x += (s8)(newInput->cur.mouse_x - newInput->prev.mouse_x);
+	        newInput->press.mouse_y += (s8)(newInput->cur.mouse_y - newInput->prev.mouse_y);
         }
         ogInput++;
         newInput++;

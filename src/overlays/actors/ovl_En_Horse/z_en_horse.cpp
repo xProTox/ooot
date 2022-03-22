@@ -2831,7 +2831,7 @@ s32 EnHorse_CalcFloorHeight(EnHorse* pthis, GlobalContext* globalCtx, Vec3f* pos
 
     if ((*floorPoly)->normal.y * COLPOLY_NORMAL_FRAC < 0.81915206f || // cos(35 degrees)
         SurfaceType_IsHorseBlocked(&globalCtx->colCtx, *floorPoly, bgId) ||
-        func_80041D4C(&globalCtx->colCtx, *floorPoly, bgId) == 7) {
+        SurfaceType_IsSolid(&globalCtx->colCtx, *floorPoly, bgId) == 7) {
         return 3; // Horse blocked surface
     }
     return 0;
@@ -2960,7 +2960,7 @@ void EnHorse_CheckFloors(EnHorse* pthis, GlobalContext* globalCtx) {
 
         if (ny < 0.81915206f || // cos(35 degrees)
             SurfaceType_IsHorseBlocked(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId) ||
-            func_80041D4C(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId) == 7) {
+            SurfaceType_IsSolid(&globalCtx->colCtx, pthis->actor.floorPoly, pthis->actor.floorBgId) == 7) {
             if ((pthis->actor.speedXZ >= 0.0f)) {
                 EnHorse_ObstructMovement(pthis, globalCtx, 4, galloping);
             } else {
@@ -3241,7 +3241,7 @@ void EnHorse_UpdateBgCheckInfo(EnHorse* pthis, GlobalContext* globalCtx) {
     ny = obstacleFloor->normal.y * COLPOLY_NORMAL_FRAC;
     if (ny < 0.81915206f || // cos(35 degrees)
         (SurfaceType_IsHorseBlocked(&globalCtx->colCtx, obstacleFloor, bgId) != 0) ||
-        (func_80041D4C(&globalCtx->colCtx, obstacleFloor, bgId) == 7)) {
+        (SurfaceType_IsSolid(&globalCtx->colCtx, obstacleFloor, bgId) == 7)) {
         if (movingFast == true && pthis->action != ENHORSE_ACT_STOPPING) {
             pthis->stateFlags |= ENHORSE_FORCE_REVERSING;
             EnHorse_StartBraking(pthis, globalCtx);
@@ -3278,7 +3278,7 @@ void EnHorse_UpdateBgCheckInfo(EnHorse* pthis, GlobalContext* globalCtx) {
     ny = obstacleFloor->normal.y * COLPOLY_NORMAL_FRAC;
     if (ny < 0.81915206f || // cos(35 degrees)
         SurfaceType_IsHorseBlocked(&globalCtx->colCtx, obstacleFloor, bgId) ||
-        func_80041D4C(&globalCtx->colCtx, obstacleFloor, bgId) == 7) {
+        SurfaceType_IsSolid(&globalCtx->colCtx, obstacleFloor, bgId) == 7) {
         if (movingFast == true && pthis->action != ENHORSE_ACT_STOPPING) {
             pthis->stateFlags |= ENHORSE_FORCE_REVERSING;
             EnHorse_StartBraking(pthis, globalCtx);
