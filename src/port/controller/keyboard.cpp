@@ -406,46 +406,51 @@ namespace oot::hid
 		// if(buttons & SDL_BUTTON(SDL_BUTTON_RIGHT))
 		//	m_state.button |= (uint16_t)Button::A_BUTTON;
 
-		// if(buttons & SDL_BUTTON(SDL_BUTTON_MIDDLE))
-		//	walk = true;
+		if(buttons & SDL_BUTTON(SDL_BUTTON_MIDDLE))
+			walk = true;
 
 		int iThreshold = 1;
 
 		bool bReset = true;
 
-		float fDeltaX = float(mouse_delta_x) * 4.f;
-		float fDeltaY = float(mouse_delta_y) * 4.f;
+		float fDeltaX = mouse_delta_x * 4.f;
+		float fDeltaY = mouse_delta_y * 4.f;
 
 		// left
 		if(fDeltaX < 0 - iThreshold)
 		{
+			fDeltaX	    = abs(fDeltaX);
 			float accel = fDeltaX / 10.f;
+			accel	    = MIN(accel, 100.f);
 			if(accel < 0)
 				accel = -accel;
-			s8 x = (0.8f * accel);
+			s8 x = (1.05f * accel);
 
-			m_state.mouse_x += MIN(x, 75) * -1;
+			m_state.mouse_x += MIN(x, 70) * -1;
 			bReset = false;
 		}
 		// right
 		else if(fDeltaX > iThreshold)
 		{
 			float accel = fDeltaX / 10.f;
-			s8 x	    = (0.8f * accel);
+			accel	    = MIN(accel, 100.f);
+			s8 x	    = (1.05f * accel);
 
-			m_state.mouse_x += MIN(x, 75);
+			m_state.mouse_x += MIN(x, 70);
 			bReset = false;
 		}
 
 		// up
 		if(fDeltaY < 0 - iThreshold)
 		{
+			fDeltaY	    = abs(fDeltaY);
 			float accel = fDeltaY / 10.f;
+			accel	    = MIN(accel, 100.f);
 			if(accel < 0)
 				accel = -accel;
 			s8 y = (1.05f * accel);
 
-			m_state.mouse_y += MIN(y, 85) * -1;
+			m_state.mouse_y += MIN(y, 70) * -1;
 
 			bReset = false;
 		}
@@ -453,9 +458,10 @@ namespace oot::hid
 		else if(fDeltaY > iThreshold)
 		{
 			float accel = fDeltaY / 10.f;
+			accel	    = MIN(accel, 100.f);
 			s8 y	    = (1.05f * accel);
 
-			m_state.mouse_y += MIN(y, 85);
+			m_state.mouse_y += MIN(y, 70);
 			bReset = false;	
 		}
 
@@ -464,9 +470,6 @@ namespace oot::hid
 			m_state.mouse_x = 0;
 			m_state.mouse_y = 0;
 		}
-
-		/*m_state.mouse_x += mouse_delta_x * 4;
-		m_state.mouse_y += mouse_delta_y * 4;*/
 #endif
 
 		if(walk)
