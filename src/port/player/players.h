@@ -21,6 +21,9 @@ namespace oot
 			static void Update();
 			static const Controller* GetController();
 
+			static int mouse_x();
+			static int mouse_y();
+
 			Players() = default;
 			const u64 size() const { return m_size; }
 			void update();

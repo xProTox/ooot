@@ -1394,7 +1394,7 @@ s16 Camera_CalcControllerYaw(Camera* camera, s16 cur, s16 target, f32 arg3, f32 
     f32 yawUpdRate;
 	const oot::hid::Controller* sControlInput = oot::hid::Players::GetController();
     s16 rStickX = (s16)sControlInput->state().r_stick_x * (s16)-250;
-    s16 mouseX = (s16)sControlInput->state().mouse_x * (s16)-250;
+    s16 mouseX = (s16)sControlInput->state().mouse_x;
 
     if(mouseX != 0)
     {

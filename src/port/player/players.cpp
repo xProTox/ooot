@@ -23,7 +23,35 @@ void Players::Update()
 	g_players.update();
 }
 
+int Players::mouse_x()
+{
+	int res = 0;
 
+	for(auto it : g_players[0].controllers())
+	{
+		if(it.get()->mouse_x != 0)
+		{
+			return it.get()->mouse_x;
+		}
+	}
+
+	return res;
+}
+
+int Players::mouse_y()
+{
+	int res = 0;
+
+	for(auto it : g_players[0].controllers())
+	{
+		if(it.get()->mouse_y != 0)
+		{
+			return it.get()->mouse_y;
+		}
+	}
+
+	return res;
+}
 
 const Controller* Players::GetController()
 {

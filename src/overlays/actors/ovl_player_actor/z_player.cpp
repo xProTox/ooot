@@ -10569,7 +10569,6 @@ s16 func_8084ABD8(GlobalContext* globalCtx, Player* pthis, s32 arg2, s16 arg3) {
     s16 temp3;
 
     if (!func_8002DD78(pthis) && !func_808334B4(pthis) && (arg2 == 0)) {
-	    printf("%d\n", sControlInput->rel.mouse_x);
         if (sControlInput->rel.mouse_y != 0 || sControlInput->rel.mouse_x != 0)
         {
 		    temp2	= sControlInput->rel.mouse_y * 240.0f;
@@ -10588,7 +10587,6 @@ s16 func_8084ABD8(GlobalContext* globalCtx, Player* pthis, s32 arg2, s16 arg3) {
 		    pthis->actor.focus.rot.y += temp2;
         }
     } else {
-	    printf("%d", sControlInput->rel.mouse_x);
         if (sControlInput->rel.mouse_y != 0 || sControlInput->rel.mouse_x != 0)
         {
 		    temp1 = (pthis->stateFlags1 & PLAYER_STATE_HORSE_MOUNTED) ? 3500 : 14000; // Riding a horse?
