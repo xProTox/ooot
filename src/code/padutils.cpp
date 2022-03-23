@@ -97,37 +97,6 @@ void PadUtils_UpdateRelXY(Input* input) {
         relY = 0;
     }
 
-    s32 curMouseX = input->cur.mouse_x;
-    s32 curMouseY = input->cur.mouse_y;
-    s32 relMouseX;
-    s32 relMouseY;
-
-    if(curX > 7)
-    {
-	    relMouseX = (curMouseX < 0x43) ? curMouseX - 7 : 0x43 - 7;
-    }
-    else if(curX < -7)
-    {
-	    relMouseX = (curMouseX > -0x43) ? curMouseX + 7 : -0x43 + 7;
-    }
-    else
-    {
-	    relMouseX = 0;
-    }
-
-    if(curY > 7)
-    {
-	    relMouseY = (curMouseY < 0x43) ? curMouseY - 7 : 0x43 - 7;
-    }
-    else if(curY < -7)
-    {
-	    relMouseY = (curMouseY > -0x43) ? curMouseY + 7 : -0x43 + 7;
-    }
-    else
-    {
-	    relMouseY = 0;
-    }
-
     PadUtils_SetRelXY(input, relX, relY);
-    PadUtils_SetMouseRelXY(input, relMouseX, relMouseY);
+    PadUtils_SetMouseRelXY(input, input->cur.mouse_x, input->cur.mouse_y);
 }

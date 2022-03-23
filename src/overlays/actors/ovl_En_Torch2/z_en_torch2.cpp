@@ -557,10 +557,15 @@ void EnTorch2_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
     input->rel.button = input->prev.button & pad54;
     input->prev.button = input->cur.button & (u16) ~(BTN_A | BTN_B);
+    input->rel.mouse_x = input->prev.mouse_x;
+    input->rel.mouse_y = input->prev.mouse_y;
     PadUtils_UpdateRelXY(input);
 
     input->press.stick_x += (s8)(input->cur.stick_x - input->prev.stick_x);
     input->press.stick_y += (s8)(input->cur.stick_y - input->prev.stick_y);
+
+    input->press.mouse_x = (s8)(input->cur.stick_x - input->prev.mouse_x);
+    input->press.mouse_y = (s8)(input->cur.stick_x - input->prev.mouse_y);
 
     // Handles Dark Link being damaged
 
